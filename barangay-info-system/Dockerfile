@@ -121,9 +121,6 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 && chmod -R 775 storage bootstrap/cache public/uploads
 
 
-
 EXPOSE 10000
-
-
 
 CMD ["apache2-foreground"]
