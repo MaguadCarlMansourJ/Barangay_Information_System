@@ -123,4 +123,6 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 
 EXPOSE 10000
 
+RUN php artisan migrate --force || true
+RUN php artisan db:seed --force || true
 CMD ["apache2-foreground"]
