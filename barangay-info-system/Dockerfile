@@ -114,15 +114,14 @@ RUN php artisan storage:link || true
 
 # Set permissions
 
-RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views bootstrap/cache public/uploads \
-
+RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache public/uploads \
 && chown -R www-data:www-data storage bootstrap/cache public/uploads \
-
 && chmod -R 775 storage bootstrap/cache public/uploads
+
 
 
 EXPOSE 10000
 
-RUN php artisan migrate --force || true
-RUN php artisan db:seed --force || true
-CMD ["apache2-foreground"]
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/bin/sh", "/start.sh"]
